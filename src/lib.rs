@@ -22,7 +22,8 @@ pub fn process_instruction(
     accounts: &[AccountInfo],
     instruction_data: &[u8],
 ) -> ProgramResult {
-    msg!("MODULE 4 - FINAL PROJECT [MING MANANGAN]");
+
+    msg!("MODULE 4 - FINAL PROJECT [MELVIN `MING` MANANGAN]");
 
     let accounts_iter = &mut accounts.iter();
 
@@ -45,7 +46,7 @@ pub fn process_instruction(
         .ok_or(ProgramError::InvalidInstructionData)?;
     
     let second_number: u32 = remaining_data
-        .get(0..8)
+        .get(8..8)
         .and_then(|slice| slice.try_into().ok())
         .map(u32::from_le_bytes)
         .ok_or(ProgramError::InvalidInstructionData)?;
