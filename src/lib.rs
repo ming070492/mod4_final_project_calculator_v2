@@ -22,8 +22,7 @@ pub fn process_instruction(
     accounts: &[AccountInfo],
     instruction_data: &[u8],
 ) -> ProgramResult {
-
-    msg!("MODULE 4 - FINAL PROJECT [MELVIN `MING` MANANGAN]");
+    msg!("MODULE 4 - FINAL PROJECT [MING MANANGAN]");
 
     let accounts_iter = &mut accounts.iter();
 
@@ -40,13 +39,13 @@ pub fn process_instruction(
     let mut operation_str: String = String::new();
     
     let first_number: u32 = remaining_data
-        .get(0..7)
+        .get(..4)
         .and_then(|slice| slice.try_into().ok())
         .map(u32::from_le_bytes)
         .ok_or(ProgramError::InvalidInstructionData)?;
     
     let second_number: u32 = remaining_data
-        .get(8..15)
+        .get(4..)
         .and_then(|slice| slice.try_into().ok())
         .map(u32::from_le_bytes)
         .ok_or(ProgramError::InvalidInstructionData)?;
@@ -71,6 +70,6 @@ pub fn process_instruction(
     data_storage_account.answer = result;
     data_storage_account.serialize(&mut &mut account.data.borrow_mut()[..])?;
 
-    msg!("{} {} {} = {}", first_number, second_number, operation_str, result);
+    msg!("{} {} {} = {}", first_number, operation_str, second_number, result);
     Ok(())
 }
